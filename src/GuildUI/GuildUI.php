@@ -2,9 +2,7 @@
 
 namespace GuildUI;
 
-use pocketmine\player\Player; // Pastikan menggunakan namespace yang benar
-use pocketmine\form\Form; // Jika Anda perlu menggunakan Form
-use pocketmine\plugin\PluginBase;
+use pocketmine\player\Player;
 
 class GuildUI {
     /** @var PluginBase */
@@ -16,7 +14,6 @@ class GuildUI {
 
     public function createGuildUI(Player $player): void {
         $form = new CustomForm(function (Player $player, array $data) {
-            // Proses data yang dikirim dari form
             if (isset($data[0])) {
                 $guildName = $data[0];
                 $player->sendMessage("Guild '$guildName' telah dibuat!");
