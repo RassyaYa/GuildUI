@@ -2,30 +2,30 @@
 
 namespace GuildUI;
 
-use pocketmine\form\CustomForm; // Pastikan ini ada
-use pocketmine\player\Player; // Pastikan Anda juga mengimpor Player
+use pocketmine\player\Player; // Pastikan menggunakan namespace yang benar
+use pocketmine\form\Form; // Jika Anda perlu menggunakan Form
+use pocketmine\plugin\PluginBase;
 
 class GuildUI {
+    /** @var PluginBase */
+    private $plugin;
 
-    private Main $plugin;
-
-    public function __construct(Main $plugin) {
+    public function __construct(PluginBase $plugin) {
         $this->plugin = $plugin;
     }
 
     public function createGuildUI(Player $player): void {
-        $form = new CustomForm(function (Player $player, ?array $data) {
-            if ($data !== null) {
+        $form = new CustomForm(function (Player $player, array $data) {
+            // Proses data yang dikirim dari form
+            if (isset($data[0])) {
                 $guildName = $data[0];
-                $this->plugin->getGuilds()[$player->getName()] = $guildName; // Simpan guild yang baru dibuat
-                $player->sendMessage("Guild '$guildName' has been created!");
-            } else {
-                $player->sendMessage("Guild creation cancelled.");
+                $player->sendMessage("Guild '$guildName' telah dibuat!");
+                // Tambahkan logika untuk membuat guild di sini
             }
         });
 
-        $form->setTitle("Create Guild"); // Mengatur judul form
-        $form->addInput("Enter Guild Name:"); // Menambahkan input untuk nama guild
-        $player->sendForm($form); // Mengirimkan form kepada pemain
+        $form->setTitle("Buat Guild")
+             ->addInput("Masukkan nama guild:", "Nama Guild")
+             ->sendForm($player);
     }
 }
