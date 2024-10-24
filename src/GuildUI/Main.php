@@ -17,11 +17,11 @@ class Main extends PluginBase implements Listener {
     public function onEnable(): void {
         $this->guildUI = new GuildUI($this);
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
-        $this->getLogger()->info("GuildUI Plugin Enabled");
+        $this->getLogger()->info("Plugin GuildUI Diaktifkan");
     }
 
     public function onJoin(PlayerJoinEvent $event): void {
-        // Logic for new player joining (optional)
+        // Logika untuk pemain baru yang bergabung (opsional)
     }
 
     public function getGuilds(): array {
@@ -34,11 +34,6 @@ class Main extends PluginBase implements Listener {
 
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
         if ($command->getName() === "guild") {
-            if (!$sender->hasPermission("guildui.command")) {
-                $sender->sendMessage("Anda tidak memiliki izin untuk menggunakan perintah ini.");
-                return true;
-            }
-            
             if (!$sender instanceof Player) {
                 $sender->sendMessage("Perintah ini hanya bisa digunakan dalam permainan.");
                 return true;
@@ -48,20 +43,9 @@ class Main extends PluginBase implements Listener {
                 case "create":
                     $this->guildUI->createGuildUI($sender);
                     break;
-                case "list":
-                    $this->guildUI->showGuildsUI($sender);
-                    break;
-                case "achievements":
-                    $this->guildUI->showAchievementsUI($sender);
-                    break;
-                case "feedback":
-                    $this->guildUI->giveFeedbackUI($sender);
-                    break;
-                case "tournament":
-                    $this->guildUI->createTournamentUI($sender);
-                    break;
+                // Tangani perintah lain...
                 default:
-                    $sender->sendMessage("Usage: /guild [create|list|achievements|feedback|tournament]");
+                    $sender->sendMessage("Penggunaan: /guild [create|list|achievements|feedback|tournament]");
                     break;
             }
             return true;
