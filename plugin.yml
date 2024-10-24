@@ -1,0 +1,15 @@
+name: GuildUI
+version: 1.0.0
+main: GuildUI\Main
+api: 5.0.0
+description: A plugin to manage guilds in PocketMine-MP.
+author: VsrStudio
+commands:
+  guild:
+    description: Manages guild operations.
+    usage: /guild [create|list|achievements|feedback|tournament]
+    permission: guildui.command
+permissions:
+  guildui.command:
+    description: Allows the player to use the guild command.
+    default: true
