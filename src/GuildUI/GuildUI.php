@@ -2,17 +2,20 @@
 
 namespace GuildUI;
 
-use pocketmine\plugin\PluginBase; // Pastikan ini sudah ada
+use pocketmine\plugin\PluginBase;
 use pocketmine\player\Player;
 
 class GuildUI {
-    private PluginBase $plugin; // Pastikan tipe ini sesuai dengan kelas plugin Anda
+    private PluginBase $plugin; // Tipe PluginBase
 
     public function __construct(PluginBase $plugin) {
-        $this->plugin = $plugin; // Simpan plugin yang diteruskan
+        $this->plugin = $plugin; // Menyimpan plugin yang diteruskan
     }
 
     public function createGuildUI(Player $player): void {
+        // Menggunakan $plugin untuk melakukan sesuatu, misalnya logging
+        $this->plugin->getLogger()->info("Membuka UI Guild untuk pemain: " . $player->getName());
+
         $form = new CustomForm(function (Player $player, mixed $data) {
             // Tangani respons di sini
         });
