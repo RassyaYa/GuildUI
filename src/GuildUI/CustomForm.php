@@ -8,9 +8,9 @@ use pocketmine\player\Player;
 class CustomForm implements Form {
     private string $title;
     private array $inputs = [];
-    private callable $callback;
+    private $callback; // Gunakan mixed untuk mendukung callable
 
-    public function __construct(callable $callback) {
+    public function __construct($callback) { // Gunakan mixed
         $this->callback = $callback;
     }
 
@@ -29,12 +29,12 @@ class CustomForm implements Form {
     }
 
     public function sendForm(Player $player): void {
-        // Kirim form kepada pemain di sini
-        // Pastikan untuk mengimplementasikan pengiriman form dengan benar
+        // Implementasikan logika pengiriman form kepada pemain di sini
     }
 
-    public function handleResponse(Player $player, $data): void {
-        // Pastikan tipe $data tidak terlalu spesifik
-        ($this->callback)($player, $data);
+    public function handleResponse(Player $player, mixed $data): void { // Ubah tipe data menjadi mixed
+        if (is_callable($this->callback)) {
+            ($this->callback)($player, $data); // Pastikan callback bisa dipanggil
+        }
     }
 }
