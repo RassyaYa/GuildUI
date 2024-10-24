@@ -7,10 +7,11 @@ use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
-use pocketmine\Player;
+use pocketmine\Player; // Pastikan Player diimpor
 
 class Main extends PluginBase implements Listener {
-    private array $guilds = [];
+    private array $guilds = []; // Pastikan untuk menggunakan ini di tempat lain
+
     private GuildUI $guildUI;
 
     public function onEnable(): void {
