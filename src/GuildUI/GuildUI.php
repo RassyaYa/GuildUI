@@ -3,7 +3,7 @@
 namespace GuildUI;
 
 use pocketmine\form\CustomForm;
-use pocketmine\Player;
+use pocketmine\Player; // Pastikan Player diimpor
 use pocketmine\plugin\PluginBase;
 
 class GuildUI {
@@ -18,7 +18,7 @@ class GuildUI {
         
         $form = new CustomForm(function (Player $player, ?array $data) {
             if ($data !== null) {
-                $guildName = $data[0]; 
+                $guildName = $data[0]; // Asumsi input ada di indeks 0
                 $player->sendMessage("Guild '$guildName' telah dibuat!");
             }
         });
