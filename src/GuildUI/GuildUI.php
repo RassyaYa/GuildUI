@@ -2,8 +2,8 @@
 
 namespace GuildUI;
 
-use pocketmine\form\CustomForm;
-use pocketmine\Player; // Pastikan Player diimpor
+use pocketmine\form\CustomForm; // Pastikan diimpor
+use pocketmine\Player; // Pastikan diimpor
 use pocketmine\plugin\PluginBase;
 
 class GuildUI {
@@ -15,7 +15,7 @@ class GuildUI {
 
     public function createGuildUI(Player $player): void {
         $this->plugin->getLogger()->info("Creating guild UI for player: " . $player->getName());
-        
+
         $form = new CustomForm(function (Player $player, ?array $data) {
             if ($data !== null) {
                 $guildName = $data[0]; // Asumsi input ada di indeks 0
