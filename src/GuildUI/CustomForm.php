@@ -3,7 +3,7 @@
 namespace GuildUI;
 
 use pocketmine\form\Form;
-use pocketmine\Player;
+use pocketmine\player\Player; // Perbaiki import Player jika diperlukan
 
 class CustomForm implements Form {
     /** @var string */
@@ -35,8 +35,8 @@ class CustomForm implements Form {
     }
 
     public function sendForm(Player $player): void {
-        // Kode untuk mengirimkan form kepada pemain.
-        // Misalnya, menggunakan API form untuk mengirimkan custom form.
+        // Kode untuk mengirimkan form kepada pemain
+        // Anda perlu memanggil metode dari API PocketMine untuk mengirimkan CustomForm
     }
 
     public function handleResponse(Player $player, array $data): void {
