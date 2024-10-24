@@ -2,9 +2,9 @@
 
 namespace GuildUI;
 
-use pocketmine\form\CustomForm; // Pastikan untuk mengimpor CustomForm
-use pocketmine\form\Form; // Impor Form jika diperlukan
-use pocketmine\player\Player;
+use pocketmine\form\CustomForm; // Pastikan ini ada
+use pocketmine\player\Player; // Pastikan Anda juga mengimpor Player
+use pocketmine\form\Form; // Impor ini jika Anda membutuhkannya
 
 class GuildUI {
 
@@ -25,7 +25,7 @@ class GuildUI {
             }
         });
 
-        $form->setTitle("Create Guild");
+        $form->setTitle("Create Guild"); // Mengatur judul form
         $form->addInput("Enter Guild Name:"); // Menambahkan input untuk nama guild
         $player->sendForm($form); // Mengirimkan form kepada pemain
     }
