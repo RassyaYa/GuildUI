@@ -4,13 +4,14 @@ namespace GuildUI;
 
 use pocketmine\form\Form;
 use pocketmine\player\Player;
+use JsonSerializable;
 
-class CustomForm implements Form {
+class CustomForm implements Form, JsonSerializable {
     private string $title;
     private array $inputs = [];
     private $callback; // Gunakan mixed untuk mendukung callable
 
-    public function __construct($callback) { // Gunakan mixed
+    public function __construct(callable $callback) { // Ubah menjadi callable
         $this->callback = $callback;
     }
 
@@ -36,5 +37,12 @@ class CustomForm implements Form {
         if (is_callable($this->callback)) {
             ($this->callback)($player, $data); // Pastikan callback bisa dipanggil
         }
+    }
+
+    public function jsonSerialize(): array {
+        return [
+            "title" => $this->title,
+            "inputs" => $this->inputs,
+        ];
     }
 }
