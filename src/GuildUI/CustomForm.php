@@ -1,41 +1,55 @@
 <?php
 
-namespace pocketmine\form;
+namespace GuildUI;
 
-use pocketmine\player\Player;
-use pocketmine\utils\TextFormat;
+use pocketmine\form\Form;
+use pocketmine\Player;
 
-class CustomForm {
+class CustomForm implements Form {
+    /** @var string */
+    private $title;
 
-    private string $title;
-    private array $elements = [];
-    private callable $callback;
+    /** @var array */
+    private $elements = [];
+
+    /** @var callable */
+    private $callback;
 
     public function __construct(callable $callback) {
         $this->callback = $callback;
     }
 
-    public function setTitle(string $title): void {
+    public function setTitle(string $title): self {
         $this->title = $title;
+        return $this;
     }
 
-    public function addInput(string $text, string $placeholder = "", string $default = ""): void {
+    public function addInput(string $text, string $placeholder = "", string $default = ""): self {
         $this->elements[] = [
-            'type' => 'input',
-            'text' => $text,
-            'placeholder' => $placeholder,
-            'default' => $default
+            "type" => "input",
+            "text" => $text,
+            "placeholder" => $placeholder,
+            "default" => $default,
         ];
+        return $this;
     }
 
     public function sendForm(Player $player): void {
-        $data = [
-            'title' => $this->title,
-            'elements' => $this->elements
-        ];
+        // Kode untuk mengirimkan form kepada pemain.
+        // Misalnya, menggunakan API form untuk mengirimkan custom form.
+    }
 
-        // Kirim data form ke pemain (implementasi pengiriman tergantung pada bagaimana Anda menangani form)
-        // Contoh:
-        $player->sendForm($this->callback, $data);
+    public function handleResponse(Player $player, array $data): void {
+        // Panggil fungsi callback dengan pemain dan data
+        ($this->callback)($player, $data);
+    }
+
+    public function jsonSerialize(): array {
+        return [
+            "type" => "form",
+            "title" => $this->title,
+            "content" => "",
+            "buttons" => $this->elements,
+        ];
     }
 }
