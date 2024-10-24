@@ -10,7 +10,6 @@ use pocketmine\command\CommandSender;
 use pocketmine\Player;
 
 class Main extends PluginBase implements Listener {
-
     private array $guilds = [];
     private GuildUI $guildUI;
 
@@ -21,15 +20,7 @@ class Main extends PluginBase implements Listener {
     }
 
     public function onJoin(PlayerJoinEvent $event): void {
-        // Logika untuk pemain baru yang bergabung (opsional)
-    }
-
-    public function getGuilds(): array {
-        return $this->guilds;
-    }
-
-    public function addGuild(Guild $guild): void {
-        $this->guilds[$guild->getName()] = $guild;
+        // Logika untuk pemain baru yang bergabung
     }
 
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
@@ -43,7 +34,6 @@ class Main extends PluginBase implements Listener {
                 case "create":
                     $this->guildUI->createGuildUI($sender);
                     break;
-                // Tangani perintah lain...
                 default:
                     $sender->sendMessage("Penggunaan: /guild [create|list|achievements|feedback|tournament]");
                     break;
