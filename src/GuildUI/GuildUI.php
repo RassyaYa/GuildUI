@@ -4,11 +4,10 @@ namespace GuildUI;
 
 use pocketmine\form\CustomForm; // Pastikan ini ada
 use pocketmine\player\Player; // Pastikan Anda juga mengimpor Player
-use pocketmine\form\Form; // Impor ini jika Anda membutuhkannya
 
 class GuildUI {
 
-    private Main $plugin; // Menyimpan instance plugin utama
+    private Main $plugin;
 
     public function __construct(Main $plugin) {
         $this->plugin = $plugin;
